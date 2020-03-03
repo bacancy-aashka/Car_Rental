@@ -1,0 +1,74 @@
+<h1> Entered Details</h1>
+<h2>
+    <b>From</b> Date: 
+    <%= @booking[:from_date]%>
+    Time:
+    <%= @booking[:from_time]%>&nbsp;&nbsp;
+    <b>To</b> Date: 
+    <%= @booking[:to_date]%>
+    Time:
+    <%= @booking[:to_time]%>&nbsp;&nbsp;
+    <b>Car Type:</b> 
+    <%= @booking[:fuel_name]%>&nbsp;&nbsp;
+    <b>Fuel Type:</b>
+    <%= @booking[:fuel_type]%>&nbsp;&nbsp;
+    <b>Want Dtriver:</b>
+    <%= @booking[:want_driver].capitalize%>&nbsp;&nbsp;
+    <b>Drop Car At Different Location:</b>
+    <%= @booking[:diff_loc].capitalize%><br/><br/>
+    <%= link_to 'Change?', bookings_show_path(@booking) %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= link_to 'Rebook?', root_path %>
+</h2>
+<br/>
+
+<%= form_with  url: travels_index_path(params[:id]),local: true do |form|%>
+
+    <table class="table">
+        <thead>
+            <tr>
+            <th>Location</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zipcode</th>
+            <th>PickUp</th>
+            <%if @booking[:diff_loc] == "true"%>
+            <th>Drop</th>  
+            <%end%>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @address.each do |add| %>
+                <tr>
+                    <td><%= add.location %></td>
+                    <td><%=  add.city%></td>
+                    <td><%= CS.states(:in)[add.state.to_sym]  %></td>
+                    <td><%= add.zip %></td>
+                    <td> <%= form.radio_button(:addr_pick,add.id, required: true) %></td>
+                    <%if @booking[:diff_loc] == "true"%>
+                        <td> <%= form.radio_button(:addr_drop, add.id, required: true) %> </td>
+                    <%end%>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+    <%= link_to 'Add New Address',create_address_path(params[:id],@booking) %>
+
+    <div class="hidden-booking">
+        <%= form.hidden_field :from_date, :value => @booking[:from_date] %>
+        <%= form.hidden_field :from_time, :value => @booking[:from_time] %>
+        <%= form.hidden_field :to_date, :value => @booking[:to_date] %>
+        <%= form.hidden_field :to_time, :value => @booking[:to_time] %>
+        <%= form.hidden_field :fuel_type, :value => @booking[:fuel_type] %>
+        <%= form.hidden_field :fuel_name, :value => @booking[:fuel_name] %>
+        <%= form.hidden_field :want_driver, :value => @booking[:want_driver] %>
+        <%= form.hidden_field :diff_loc, :value => @booking[:diff_loc] %>
+    </div>
+    
+    <%=form.submit :Book, id:"submit_btn"%>
+<% end %>
+
+
+

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  licence: MyString
+  experience: 1
+  salary: 1
+  avail: false
+  user: one
+
+two:
+  licence: MyString
+  experience: 1
+  salary: 1
+  avail: false
+  user: two

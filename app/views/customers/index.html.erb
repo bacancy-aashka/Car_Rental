@@ -1,0 +1,48 @@
+<h1>Search For Car</h1>
+
+<%= form_with model: @booking, url: "/bookings/show",local: true,method: :get do |form|%>
+
+    <div class="field">
+        <%= form.label :from %><br/>
+        <%= form.label :date %>
+        <%= form.text_field :from_date,required: true, :class => 'startDate' %><br/>
+        <%= form.label :time %>
+        <%= form.time_field :from_time,required: true %><br/><br/>
+    </div>
+
+    <div class="field">
+        <%= form.label :to %><br/>
+        <%= form.label :date %>
+        <%= form.text_field :to_date,required: true, :class => 'endDate' %><br/>
+        <%= form.label :time %>
+        <%= form.time_field :to_time,required: true %><br/><br/>
+    </div>
+
+    <div class="field">
+        <%= form.label :car_type %>
+        <%= form.select :fuel_name,CarType::TYPE %><br/><br/>
+    </div>
+
+    <div class="field">
+        <%= form.label :fuel_type %>
+        <%= form.select :fuel_type,CarType::FUEL %><br/><br/>
+    </div>
+
+    <div class="field">
+        <%= form.label :want_driver %>
+        <%= form.check_box :want_driver,{},true,false %><br/><br/>
+    </div>
+
+    <div class="field">
+        <%= form.label :drop_car_at_different_location %>
+        <%= form.check_box :diff_loc,{},"true","false" %><br/><br/>
+    </div>
+
+
+
+    <div class="actions">
+        <%= form.submit "Search For Cars" %>
+    </div>
+
+
+<% end %>

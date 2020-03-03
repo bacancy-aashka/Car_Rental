@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from: 2020-02-26 16:10:32
+  to: 2020-02-26 16:10:32
+  status: MyString
+  want_driver: false
+  fuel: MyString
+  car: one
+  customer: one
+  driver: one
+
+two:
+  from: 2020-02-26 16:10:32
+  to: 2020-02-26 16:10:32
+  status: MyString
+  want_driver: false
+  fuel: MyString
+  car: two
+  customer: two
+  driver: two

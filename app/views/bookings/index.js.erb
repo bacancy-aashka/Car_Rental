@@ -1,0 +1,7 @@
+<% @cities.each do |c| %>
+  city.options[city.options.length] = new Option('<%= c %>', '<%= c %>')
+<% end %>
+
+<% @cities_drop.each do |c| %>
+  city_drop.options[city_drop.options.length] = new Option('<%= c %>', '<%= c %>')
+<% end %>

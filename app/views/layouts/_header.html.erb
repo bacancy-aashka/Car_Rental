@@ -1,0 +1,23 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "Car Rental", root_path, id: "logo" %>
+      <nav>
+        <ul class="nav pull-right demo">
+          
+          <% if user_signed_in? %>
+          <%= link_to "Home",root_path %>
+          <%= link_to "Edit Details",edit_user_registration_path %>
+          <%= link_to 'Sign Out |', destroy_user_session_path, method: :delete %>
+          <%= link_to current_user.fname.capitalize, '#' %>
+          <% else %>
+          <%= link_to 'Sign Up', new_user_registration_path %>
+          <%=link_to 'Sign In', user_session_path%>
+<br><br>
+
+<% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  seats: 1
+  luggage: 1
+  min_kms: 1
+  cost_per_km: 1
+  avail: false
+  car_type: one
+
+two:
+  name: MyString
+  seats: 1
+  luggage: 1
+  min_kms: 1
+  cost_per_km: 1
+  avail: false
+  car_type: two
