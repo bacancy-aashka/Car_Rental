@@ -1,0 +1,71 @@
+<%= form_with(model: @user,url: create_user_path, local: true,method: :post) do |f| %>
+<% if current_user.has_role? :superadmin %>
+  <div class="field">
+    <%= f.label :role %>&nbsp;&nbsp;
+    <%= f.select :role,User::ROLE.map(&:capitalize), {},{class: "btn btn-dark dropdown-toggle"} %>
+  </div><br/>
+<% end %>
+  <div class="field">
+    <%= f.label :First_name %>&nbsp;&nbsp;
+    <%= f.text_field :fname, autofocus: true %><br /><br />
+  </div>
+
+  <div class="field">
+    <%= f.label :Last_Name %>&nbsp;&nbsp;
+    <%= f.text_field :lname, autofocus: true %><br /><br />
+  </div>
+
+  <div class="field">
+    <%= f.label :Contact_No %>&nbsp;&nbsp;
+    <%= f.text_field :contact %><br /><br />
+  </div>
+
+  <div class="field">
+    <%= f.label :Birth_Date %>&nbsp;&nbsp;
+    <%= f.date_field :dob %><br /><br />
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %>&nbsp;&nbsp;
+    <%= f.select :gender,User::GENDER, {},{class: "btn btn-dark dropdown-toggle"} %><br/><br/>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>&nbsp;&nbsp;
+    <%= f.email_field :email %><br/><br />
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>&nbsp;&nbsp;
+    <%= f.password_field :password%><br/><br />
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %>&nbsp;&nbsp;
+    <%= f.password_field :password_confirmation %><br/><br />
+  </div>
+
+  <br /><br />
+
+  <% if current_user.has_role? :admin %>
+
+   <div class="hidden-role">
+        <%= f.hidden_field :role, :value => "driver" %>
+    </div>
+  <% end %>
+
+
+
+
+
+
+
+
+  
+  <div class="actions">
+    <%= f.submit "Add User" %>
+  </div>
+
+ 
+
+<% end %>

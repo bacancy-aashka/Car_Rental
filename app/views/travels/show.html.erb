@@ -1,0 +1,95 @@
+<h1>Details Of Booking..!!</h1>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+<div class="booking border border-dark"><br/>
+    <h2>
+        <b>From</b> Date & Time: 
+        <%= @booking.from %><br/><br/>
+        
+        <b>To</b> Date & Time: 
+        <%= @booking.to %><br/><br/>
+
+        <b>Booking Status:</b> 
+        <%= @booking.status%><br/><br/>
+        
+        <b>Driver Taken:</b>
+        <%= @booking.want_driver.humanize %><br/><br/>
+        
+        <b>Fuel Type Of Car:</b>
+        <%= @booking.fuel %><br/><br/>
+        
+        <b>Drop Car At Different Location:</b>
+        <%= @booking.diff_city.humanize %><br/><br/>
+    </h2>
+
+
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseCar" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Show Car Details
+    </a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="collapse" id="collapseCar"><br/>
+        <div class="card card-body">
+            <h4><b>Car Details</b></h4>
+                <p>
+                    <strong>Car Name:</strong>
+                    <%= @car.name %> 
+                </p>
+
+                <p>
+                    <strong>Number Of Seats:</strong>
+                    <%= @car.seats %>
+                </p>
+
+                <p>
+                    <strong>Luggage Capacity:</strong>
+                    <%= @car.luggage %> Liters
+                </p>
+
+                <p>
+                    <strong>Minimum Kilometers Per Day:</strong>
+                    <%= @car.min_kms %>
+                </p>
+
+                <p>
+                    <strong>Cost Per Kilometer:</strong>
+                    <%= @car.cost_per_km %>
+                </p>
+
+                <p>
+                    <strong>Model Number:</strong>
+                    <%= @car.model %>
+                </p>
+        </div><br/>
+    </div>
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseAddress" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Show Address Details
+    </a><br/>
+    <div class="collapse" id="collapseAddress"><br/>
+        <div class="card card-body">
+            <h4><b>Address Details</b></h4><br/>
+            <table class="table table-striped table-dark">
+                <thead class = "bg-info">
+                    <tr>
+                    <th>Location</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zipcode</th>
+                    <th>Type</th>
+                </thead>
+
+                <tbody>
+                    <% @address.each do |add| %>
+                        <tr>
+                            <td><%= add.location %></td>
+                            <td><%=  add.city%></td>
+                            <td><%= CS.states(:in)[add.state.to_sym]  %></td>
+                            <td><%= add.zip %></td>
+                            <td> <%= add.addr_type %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br/>
+</div>

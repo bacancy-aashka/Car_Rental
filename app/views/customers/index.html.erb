@@ -20,17 +20,17 @@
 
     <div class="field">
         <%= form.label :car_type %>
-        <%= form.select :fuel_name,CarType::TYPE %><br/><br/>
+        <%= form.select :fuel_name,CarType::TYPE.map { |c| [c.name] }, {},{class: "btn btn-info dropdown-toggle"} %><br/><br/>
     </div>
 
     <div class="field">
         <%= form.label :fuel_type %>
-        <%= form.select :fuel_type,CarType::FUEL %><br/><br/>
+        <%= form.select :fuel_type,CarType::FUEL.map { |c| [c.fuel] }, {},{class: "btn btn-info dropdown-toggle"} %><br/><br/>
     </div>
 
     <div class="field">
         <%= form.label :want_driver %>
-        <%= form.check_box :want_driver,{},true,false %><br/><br/>
+        <%= form.check_box :want_driver,{},"true","false" %><br/><br/>
     </div>
 
     <div class="field">
@@ -41,7 +41,7 @@
 
 
     <div class="actions">
-        <%= form.submit "Search For Cars" %>
+        <%= form.submit "Search For Cars", {class: "btn btn-primary mb-2"} %>
     </div>
 
 

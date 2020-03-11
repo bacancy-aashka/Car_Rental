@@ -1,0 +1,42 @@
+
+<% if !@address.empty? %>
+    <h1><%= User.find(@address.first.user_id).fname%> Address</h1>
+<%else%>
+    <h1>No Address Yet For <%= User.find_by(params[:id]).fname%></h1>
+<% end%>
+
+<table class="table table-striped table-dark">
+        <thead class = "bg-info">
+            <tr>
+            <th>Location</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zipcode</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @address.each do |add| %>
+                <tr>
+                    <td><%= add.location %></td>
+                    <td><%=  add.city%></td>
+                    <td><%= CS.states(:in)[add.state.to_sym]  %></td>
+                    <td><%= add.zip %></td>
+                    <td> <%= link_to edit_address_path(add) do  %>
+                        <%= '<i class="fa fa-pencil-square-o text-light" aria-hidden="true"></i>'.html_safe %>
+                        <% end %> 
+                    </td>
+                    <td> <%= link_to add, method: :delete, data: { confirm: 'Are you sure?' } do  %>
+                        <%= '<i class="fa fa-trash text-light" aria-hidden="true"></i>'.html_safe %>
+                        <% end %> 
+                    </td>   
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+<br/><br/><br/>
+    <%= link_to 'Add New Address',new_address_path, class: "btn btn-outline-primary btn-lg" %>
+ 

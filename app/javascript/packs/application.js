@@ -12,11 +12,13 @@ require ("bootstrap")
 require ("jquery")
 require ("jquery-ui")
 require ("bootstrap-datepicker")
+require ("select2")
 
 
 
 // Imported Javascripts
 require("packs/date-bootstrap")
+require("packs/js_select2_car")
 
 
 

@@ -1,7 +1,9 @@
-@import "bootstrap";
 
- /* mixins, variables, etc. */
- 
+@import "bootstrap";
+@import "font-awesome";
+
+
+
  
  /* universal */
  
@@ -64,14 +66,12 @@
    float: left;
    margin-right: 10px;
    font-size: 1.7em;
-   color: black;
+   color: white;
    text-transform: uppercase;
    letter-spacing: -1px;
-   padding-top: 15px;
    font-weight: bold;
    line-height: 1;
    &:hover {
-     color: black;
      text-decoration: none;
    }
  }
@@ -105,8 +105,13 @@
  .demo{ 
    padding: 15px;
    a{
-     padding: 0 20px;
-     color: black;
+    float: right;
+    list-style: none;
+     padding: 05px 18px;
+     color: white;
    }
  
  }
+
+
+ 
