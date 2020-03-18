@@ -1,0 +1,27 @@
+<%= render 'cars/links_car' %>
+<br/><br/>
+<h1>Car Fuels</h1>
+
+<table class="table table-striped table-dark">
+  <thead class = "bg-info">
+    <tr>
+      <th>Name</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @car_fuels.each do |car_fuel| %>
+      <tr>
+        <td><%= car_fuel.name %></td>
+        <td> <%= link_to edit_car_type_path(car_fuel) do  %>
+          <%= '<i class="fa fa-pencil-square-o text-light" aria-hidden="true"></i>'.html_safe %>
+        <% end %></td>
+        <td> <%= link_to car_fuel, method: :delete, data: { confirm: 'Are you sure?' } do  %>
+            <%= '<i class="fa fa-trash text-light" aria-hidden="true"></i>'.html_safe %>
+        <% end %></td>   
+      </tr>
+    <% end %>
+  </tbody>
+</table>

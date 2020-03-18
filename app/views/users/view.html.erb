@@ -10,6 +10,7 @@
             <th>Gender</th>
             <th>Email</th>
             <th>Role</th>
+            <th>User Personal<br/> Details</th>
             <th>Address</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -26,12 +27,27 @@
                     <td> <%= user.gender %></td>
                     <td> <%= user.email %> </td>
                     <td> <%= user.roles.first.name.capitalize %> </td>
-                    
-                    <td> <%= link_to view_addr_path(user.id) do  %>
+                    <td><% if user.roles.first.name == 'driver' %>
+                      <%= link_to edit_driver_path(user.id) do  %>
+                      <%= '<i class="fa fa-pencil-square-o text-light" aria-hidden="true"></i>'.html_safe %>
+                      <% end %>/
+                      <%= link_to driver_path(user.id) do  %>
+                      <%= '<i class="fa fa-eye text-light" aria-hidden="true"></i>'.html_safe %>
+                      <% end %>
+                    <%end%>
+                    <% if user.roles.first.name == 'customer' %>
+                      <%= link_to edit_customer_path(user.id) do  %>
+                      <%= '<i class="fa fa-pencil-square-o text-light" aria-hidden="true"></i>'.html_safe %>
+                      <% end %>/
+                      <%= link_to customer_path(user.id) do  %>
+                      <%= '<i class="fa fa-eye text-light" aria-hidden="true"></i>'.html_safe %>
+                      <% end %>
+                    <%end%></td>
+                    <td><%= link_to view_addr_path(user.id) do  %>
                         <%= '<i class="fa fa-map-marker text-light" aria-hidden="true"></i>'.html_safe %>
                         <% end %> 
                     </td>
-                    
+                    <% if user.roles.first.name != 'superadmin' %>
                     <td> <%= link_to '#' do  %>
                         <%= '<i class="fa fa-pencil-square-o text-light" aria-hidden="true"></i>'.html_safe %>
                         <% end %> 
@@ -40,7 +56,7 @@
                         <%= '<i class="fa fa-trash text-light" aria-hidden="true"></i>'.html_safe %>
                         <% end %> 
                     </td>
-                    
+                    <% end %>
                     
                 </tr>
             <% end %>

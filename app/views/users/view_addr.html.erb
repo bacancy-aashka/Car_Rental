@@ -1,6 +1,6 @@
 
 <% if !@address.empty? %>
-    <h1><%= User.find(@address.first.user_id).fname%> Address</h1>
+    <h1><%= @address.first.user.fname%> Address</h1>
 <%else%>
     <h1>No Address Yet For <%= User.find_by(params[:id]).fname%></h1>
 <% end%>

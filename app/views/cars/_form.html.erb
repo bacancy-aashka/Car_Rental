@@ -1,7 +1,12 @@
 <%= form_with(model: car, local: true) do |f| %>
     <div class="field" style="display:inline-block">
         <%= f.label :car_type%>
-        <%= f.collection_select :car_type_id, CarType.all,:id,:formatted_type %>
+        <%= f.collection_select :car_type_id, CarType.all,:id,:name %>
+    </div>
+    <br/><br/>
+    <div class="field" style="display:inline-block">
+        <%= f.label :car_fuel%>
+        <%= f.collection_select :car_fuel_id, CarFuel.all,:id,:name %>
     </div>
     <br/><br/>
     <div class="field" style="display:inline-block">

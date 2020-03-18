@@ -4,7 +4,7 @@ class CarsController < ApplicationController
   before_action :set_car, only: %i[show edit update destroy]
 
   def index
-    @cars = Car.includes(:car_type)
+    @cars = Car.includes(:car_type, :car_fuel).paginate(page: params[:page], per_page: 5)
   end
 
   def new
@@ -49,6 +49,6 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:name, :seats, :luggage, :min_kms, :cost_per_km, :car_type_id, :model)
+    params.require(:car).permit(:name, :seats, :luggage, :min_kms, :cost_per_km, :car_type_id, :model, :car_fuel_id)
   end
 end

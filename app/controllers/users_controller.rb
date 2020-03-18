@@ -18,13 +18,17 @@ class UsersController < ApplicationController
     @user.add_role role
     if @user.save!
       flash[:success] = 'Successfully User Created With Role: ' + role
-      redirect_to root_path
+      if @user.has_role? :driver
+        redirect_to driver_path(@user)
+      else
+        redirect_to root_path
+      end
     else
       flash[:success] = 'Successfully User Created With Role: ' + role
       redirect_to root_path
-      end
+    end
 
-    byebug
+    # byebug
   end
 
   def view

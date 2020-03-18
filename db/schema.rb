@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_303_170_343) do
+ActiveRecord::Schema.define(version: 20_200_315_175_317) do
   create_table 'active_storage_attachments', force: :cascade do |t|
     t.string 'name', null: false
     t.string 'record_type', null: false
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20_200_303_170_343) do
     t.float 'total'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.float 'driver_amt'
     t.index ['booking_id'], name: 'index_bills_on_booking_id'
   end
 
@@ -75,9 +76,14 @@ ActiveRecord::Schema.define(version: 20_200_303_170_343) do
     t.index ['driver_id'], name: 'index_bookings_on_driver_id'
   end
 
+  create_table 'car_fuels', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+  end
+
   create_table 'car_types', force: :cascade do |t|
     t.string 'name'
-    t.string 'fuel'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
   end
@@ -93,6 +99,8 @@ ActiveRecord::Schema.define(version: 20_200_303_170_343) do
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.string 'model'
+    t.integer 'car_fuel_id'
+    t.index ['car_fuel_id'], name: 'index_cars_on_car_fuel_id'
     t.index ['car_type_id'], name: 'index_cars_on_car_type_id'
   end
 
@@ -102,6 +110,16 @@ ActiveRecord::Schema.define(version: 20_200_303_170_343) do
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.index ['user_id'], name: 'index_customers_on_user_id'
+  end
+
+  create_table 'driver_requests', force: :cascade do |t|
+    t.integer 'booking_id', null: false
+    t.integer 'driver_id', null: false
+    t.string 'status'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['booking_id'], name: 'index_driver_requests_on_booking_id'
+    t.index ['driver_id'], name: 'index_driver_requests_on_driver_id'
   end
 
   create_table 'drivers', force: :cascade do |t|
@@ -167,8 +185,11 @@ ActiveRecord::Schema.define(version: 20_200_303_170_343) do
   add_foreign_key 'bookings', 'cars'
   add_foreign_key 'bookings', 'customers'
   add_foreign_key 'bookings', 'drivers'
+  add_foreign_key 'cars', 'car_fuels'
   add_foreign_key 'cars', 'car_types'
   add_foreign_key 'customers', 'users'
+  add_foreign_key 'driver_requests', 'bookings'
+  add_foreign_key 'driver_requests', 'drivers'
   add_foreign_key 'drivers', 'users'
   add_foreign_key 'travels', 'addresses'
   add_foreign_key 'travels', 'bookings'

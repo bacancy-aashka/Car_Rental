@@ -30,4 +30,8 @@ document.addEventListener("turbolinks:load", function(){
         theme: "bootstrap",
         width: '200px',
     });
+    $("#car_car_fuel_id").select2({
+      theme: "bootstrap",
+      width: '200px',
+  });
 })

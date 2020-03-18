@@ -87,3 +87,9 @@ gem 'select2-rails'
 gem 'font-awesome-rails'
 
 gem 'rubocop'
+
+gem 'will_paginate-bootstrap'
+
+gem 'wicked_pdf'
+
+gem 'wkhtmltopdf-binary'

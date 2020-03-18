@@ -1,0 +1,39 @@
+<h1>Approval</h1>
+
+
+<div class="travel">
+    <table  class="table table-striped table-dark">
+        <thead class = "bg-info">
+            <tr>
+            <th>From</th>
+            <th>To</th>
+            <th>Fuel</th>
+            <th>Driver Present</th>
+            <th>Car Drop Off At<br/> Different Location</th>
+            <th>Booking Details</th>
+            <th>Approve</th>
+            <th>Disapprove</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @bookings.each do |booking| %>
+            <tr>
+                <td><%= booking.from.strftime("%a, %d-%b-%Y:  %I:%M %p") %></td>
+                <td><%=  booking.to.strftime("%a, %d-%b-%Y:  %I:%M %p") %></td>
+                <td><%= booking.fuel %></td>
+                <td><%= booking.want_driver.humanize %></td>
+                <td><%= booking.diff_city.humanize %></td>
+                <td><%= link_to 'View Booking Details', travel_path(booking.id),class: "btn btn-outline-light" %></td>
+                <td> <%= link_to request_accepted_path(booking) do  %>
+                  <%= '<i class="fa fa-check-circle-o text-success fa-2x" aria-hidden="true"></i>'.html_safe %>
+                <% end %> </td>
+                <td> <%= link_to request_rejected_path(booking) do  %>
+                  <%= '<i class="fa fa-times-circle-o text-danger fa-2x" aria-hidden="true"></i>'.html_safe %>
+                <% end %> </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

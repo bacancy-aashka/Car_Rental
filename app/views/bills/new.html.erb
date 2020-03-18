@@ -1,0 +1,42 @@
+<h1>Bill Generation</h1>
+<h2>
+  <b>From</b>
+  <%= @booking.from%>&nbsp;&nbsp;
+  <b>To</b>
+  <%= @booking.to%>&nbsp;&nbsp;
+  <b>Car Type:</b> 
+  <%= @booking.car_id %>&nbsp;&nbsp;
+  <b>Fuel Type:</b>
+  <%= @booking.fuel%>&nbsp;&nbsp;
+  <b>Want Dtriver:</b>
+  <%= @booking.want_driver.humanize%>&nbsp;&nbsp;
+  <b>Drop Car At Different Location:</b>
+  <%= @booking.diff_city.humanize%><br/><br/>
+</h2>
+
+<%= form_with model: @bill, local: true do |form|%>
+
+  <div class="field">
+    <%= form.label :kms_driven %>
+    <%= form.number_field :total_kms %>
+  </div>
+
+  <div class="field">
+    <%= form.label :toll_tax %>
+    &nbsp;&nbsp;&#8377;&nbsp;<%= form.number_field :toll_tax %>
+  </div>
+
+  <%if @booking.want_driver == true%>
+    <div class="field">
+      <%= form.label :driver_amt %>
+      &nbsp;&nbsp;&#8377;&nbsp;<%= form.number_field :driver_amt %><br/>
+    </div>
+  <%end%>
+  <%= form.hidden_field :booking_id, :value => @booking.id %>
+<br/><br/>
+  <div class="actions">
+    <%= form.submit "Add Bill", {class: "btn btn-primary mb-2"} %>
+  </div>
+
+
+<% end %>

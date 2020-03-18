@@ -1,0 +1,108 @@
+<html>
+<head>
+
+<%= wicked_pdf_stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+<%= wicked_pdf_javascript_include_tag "application", "data-turbolinks-track" => true %>
+<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Kaushan+Script|Noto+Serif|Permanent+Marker&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Kreon&display=swap" rel="stylesheet">
+<style>
+body h1{
+/* font-family: 'Noto Serif', serif; */
+/* font-family: 'Permanent Marker', cursive; */
+/* font-family: 'Alfa Slab One', cursive; */
+font-family: 'Kaushan Script', cursive;
+}
+h2{
+  font-family: 'Kreon', serif;
+}
+.right{
+  text-align: right;
+}
+</style>
+</head>
+<body>
+  <h1 class="right m-1">Car Rental&nbsp;&nbsp;</h1>
+  <h2 class="right m-1 text-danger">car.rental.aashka@gmail.com&nbsp;&nbsp;</h2>
+  <h2 class="right m-1 text-danger">1234567890&nbsp;&nbsp;</h2>
+  <div class="main">
+  <h2 class="text-left m-1" style="font-size:25px">Bill For&nbsp;:&nbsp;<%= @bill.booking.customer.user.fname %>&nbsp;<%= @bill.booking.customer.user.lname %></h2>
+  <h2 class="text-left m-1" style="font-size:25px">Email&nbsp;:&nbsp;<%= @bill.booking.customer.user.email %></h2>
+  <h2 class="text-left m-1" style="font-size:25px">Contact&nbsp;:&nbsp;<%= @bill.booking.customer.user.contact %></h2>
+
+  <h1 class="text-left mt-5 mb-3" style="font-size:40px">Booking Details</h1>
+  <div class="field">
+    <h2 class="text-left m-1" style="font-size:20px">From Date&nbsp;:&nbsp;<%= @bill.booking.from.strftime("%a, %d-%b-%Y:  %I:%M %p") %></h2>
+  </div>
+  <div class="field">
+    <h2 class="text-left m-1" style="font-size:20px">To Date&nbsp;:&nbsp;<%= @bill.booking.to.strftime("%a, %d-%b-%Y:  %I:%M %p") %></h2>
+  </div>
+  <div class="field">
+    <h2 class="text-left m-1" style="font-size:20px">Driver Taken&nbsp;:&nbsp;<%= @bill.booking.want_driver.humanize %></h2>
+  </div>
+  <div class="field">
+    <h2 class="text-left m-1" style="font-size:20px">Car Dropped At Different Location&nbsp;:&nbsp;<%= @bill.booking.diff_city.humanize %></h2>
+  </div>
+  <div class="field">
+    <h2 class="text-left m-1" style="font-size:20px">Fuel&nbsp;:&nbsp;<%= @bill.booking.fuel %></h2>
+  </div>
+  </div>
+
+
+
+  <h1>Your Bill Details</h1>
+  <div class="travel">
+      <table  class="table table-striped table-light">
+          <thead class = "bg-warning">
+              <tr>
+              <th>Title</th>
+              <th class="right">Value</th>
+              </tr>
+          </thead>
+
+          <tbody>
+              <tr>
+                <td>Total Kilometers Traveled</td>
+                <td class="right"><%= @bill.total_kms %>&nbsp;Kms</td>
+              </tr>
+              <tr>
+                <td>Actual Kilometers Counted</td>
+                <td class="right"><%= @bill.actual_km %>&nbsp;Kms</td>
+              </tr>            
+          </tbody>
+      </table>
+  </div>
+
+      <table  class="table table-striped table-light">
+          <thead class = "bg-warning">
+              <tr>
+              <th>Title</th>
+              <th class="right">Amount</th>
+              </tr>
+          </thead>
+
+          <tbody>
+              <tr>
+                <td>Driver Amount</td>
+                <td class="right">&#8377;&nbsp;<%= @bill.driver_amt != nil ? @bill.driver_amt : '0'  %></td>
+              </tr>
+              <tr>
+                <td>Toll Tax</td>
+                <td class="right">&#8377;&nbsp;<%= @bill.toll_tax %></td>
+              </tr>
+              <tr>
+                <td>Amount</td>
+                <td class="right">&#8377;&nbsp;<%= @bill.amount %></td>
+              </tr>
+              <tr>
+                <td>Tax</td>
+                <td class="right">&#8377;&nbsp;<%= @bill.tax %></td>
+              </tr>
+              <tr class="border-top-5 border-dark">
+                <td class="border-top-5 border-dark">Total</td>
+                <td class="right border-top-5 border-dark">&#8377;&nbsp;<%= @bill.total %></td>
+              </tr>
+              
+          </tbody>
+      </table>
+
+</body>

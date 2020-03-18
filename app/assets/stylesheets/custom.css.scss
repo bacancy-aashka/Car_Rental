@@ -114,4 +114,37 @@
  }
 
 
+
+ .pagination {
+  font-size: 20px;
+}
+
+.pagination > * {
+  padding: 0.3em 0.4em;
+  border: 1px solid #ddd;
+}
+
+.pagination a:hover {
+  color: blue
+
+}
+
+.pagination a:active {
+  text-shadow: none;
+}
+
+.pagination .active{
+  background-color: rgb(177, 211, 245); 
+}
+
+.pagination .current {
+  background: #202020 none repeat scroll 0 0;
+  color: white;
+  text-shadow: 1px 1px 1px #171717;
+  
+}
+
+.pagination .disabled {
+  color: #C0C0C0;
+}
  

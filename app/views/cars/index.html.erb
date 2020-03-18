@@ -1,17 +1,16 @@
 <%= render 'links_car' %>
 <br/><br/>
 <h1>All Cars</h1>
-
 <table class="table table-striped table-dark">
-        <thead class = "bg-info">
-            <tr>
+  <thead class = "bg-info">
+    <tr>
             <th>Name</th>
             <th>Seats</th>
             <th>Luggage</th>
             <th>Minimum<br/>Kilometers</th>
             <th>Cost Per<br/>Kilometer</th>
             <th>Availability</th>
-            <th>Car Type</th>
+            <th>Car Type: Fuel</th>
             <th>Model</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -27,19 +26,22 @@
                     <td><%= car.min_kms %></td>
                     <td> <%= car.cost_per_km %></td>
                     <td> <%= car.avail.humanize %> </td>
-                    <td> <%= car.car_type.name%>: <%=car.car_type.fuel %> </td>
+                    <td> <%= car.car_type.name%>: <%=car.car_fuel.name %> </td>
                     <td> <%= car.model %> </td>
                     <td> <%= link_to edit_car_path(car) do  %>
                         <%= '<i class="fa fa-pencil-square-o text-light" aria-hidden="true"></i>'.html_safe %>
-                        <% end %> 
+                        <% end %>
                     </td>
                     <td> <%= link_to car, method: :delete, data: { confirm: 'Are you sure?' } do  %>
                         <%= '<i class="fa fa-trash text-light" aria-hidden="true"></i>'.html_safe %>
-                        <% end %> 
+                        <% end %>
                     </td>
-                    
-                    
+
+
                 </tr>
             <% end %>
         </tbody>
     </table>
+    
+    <%= page_entries_info @cars %>
+<%= will_paginate @cars, renderer: BootstrapPagination::Rails %>

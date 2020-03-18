@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Use this file to easily define all of your cron jobs.
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
@@ -23,5 +25,5 @@ set :environment, 'development'
 set :output, "#{path}/log/cron_log.log"
 
 every 1.hour do
-  runner "Booking.cron_job_booking_status_update" 
+  runner 'Booking.cron_job_booking_status_update'
 end

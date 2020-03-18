@@ -4,7 +4,7 @@ class User < ApplicationRecord
   rolify
   has_one :customer, dependent: :destroy
   has_one :driver
-  has_many :addresses
+  has_many :addresses, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -24,7 +24,6 @@ class User < ApplicationRecord
       Customer.create!(user: self)
     elsif has_role? :driver
       Driver.create!(user: self)
-    else
     end
   end
 end

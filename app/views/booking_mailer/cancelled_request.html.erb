@@ -1,0 +1,16 @@
+<h1>Booking Cancellation</h1>
+
+<p>
+<strong>Your  Booking for following details has been cancelled sorry for the inconvienence</strong>
+<h2>From: <%= @booking.from.strftime("%a, %d-%b-%Y:  %I:%M %p") %></h2>
+<h2>To: <%= @booking.to.strftime("%a, %d-%b-%Y:  %I:%M %p") %></h2>
+<h2>Want Driver: <%= @booking.want_driver.humanize %></h2>
+<h2>Fuel Type: <%= @booking.fuel %></h2>
+<h2>Car Name: <%= @booking.car.name %></h2>
+<h2>Car Number: <%= @booking.car.model %></h2>
+
+For More Details Please Log Into Your Account
+
+<%= link_to 'Car Rental', 'http://localhost:3000/' %>
+  
+</p>

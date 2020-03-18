@@ -20,12 +20,12 @@
 
     <div class="field">
         <%= form.label :car_type %>
-        <%= form.select :fuel_name,CarType::TYPE.map { |c| [c.name] }, {},{class: "btn btn-info dropdown-toggle"} %><br/><br/>
+        <%= form.collection_select :car_type_name, CarType.all,:id,:name, {},{class: "btn btn-info dropdown-toggle"} %><br/><br/>
     </div>
 
     <div class="field">
         <%= form.label :fuel_type %>
-        <%= form.select :fuel_type,CarType::FUEL.map { |c| [c.fuel] }, {},{class: "btn btn-info dropdown-toggle"} %><br/><br/>
+        <%= form.collection_select :car_fuel_name, CarFuel.all,:id,:name, {},{class: "btn btn-info dropdown-toggle"} %><br/><br/>
     </div>
 
     <div class="field">

@@ -1,0 +1,37 @@
+<%= form_with(model: driver, local: true) do |f| %>
+  <div class="field">
+    <%= f.label :licence_no %>
+    <%= f.text_field :licence, required: true %>
+  </div>
+  <br/>
+
+  <div class="field">
+    <%= f.label :experience_years %>
+    <%= f.text_field :experience, required: true %>
+  </div>
+  <br/>
+
+  <% if current_user.has_role? :superadmin %>  
+    <div class="field">
+      <%= f.label :salary %>
+      <%= f.number_field :salary, required: true %>
+    </div>
+    <br/>
+  <%end%>
+  
+  <div class="field">
+    <%= f.label :licence_image %>
+    <%= f.file_field :licence_driver_image %><br><br>
+  </div>
+  <br/>
+
+  <div class="field">
+    <%= f.label :driver_image %>
+    <%= f.file_field :driver_image %><br><br>
+  </div>
+  <br/>
+  
+  <div class="actions">
+    <%=f.submit "Update Driver Details", {class: "btn btn-primary mb-2 btn-lg"}%>
+  </div>
+<%end %>

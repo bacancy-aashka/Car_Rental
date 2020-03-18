@@ -1,0 +1,28 @@
+<h1>Licence Details</h1>
+
+<table class="table table-striped table-dark">
+  <thead class = "bg-info">
+    <tr>
+      <th>Licence Number</th>
+      <th>Licence Image</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+        <td><%= @customer.licence %></td>
+        <td><%= image_tag(@customer.licence_customer_image, style:"width:50%") if @customer.licence_customer_image.attached?%></td>
+        <td> <%= link_to edit_customer_path(@customer.id) do  %>
+          <%= '<i class="fa fa-pencil-square-o text-light" aria-hidden="true"></i>'.html_safe %>
+        <% end %></td>
+    </tr>
+  </tbody>
+</table>
+
+<% if @customer.licence == nil %>  
+  <%= link_to 'Add Licence',edit_customer_path, class: "btn btn-outline-primary btn-lg" %>
+<% end %>
+  
+  
+  

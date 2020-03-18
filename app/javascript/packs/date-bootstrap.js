@@ -2,9 +2,6 @@
 document.addEventListener("turbolinks:load", function(){
     var state = document.getElementById("address_state");
     var city = document.getElementById("address_city");
-    // var state_drop = document.getElementById("state_drop");
-    // var city_drop = document.getElementById("city_drop");
-
 
     $("#address_state").on("change", function() {
       while (city.firstChild) city.removeChild(city.firstChild);
@@ -21,8 +18,7 @@ document.addEventListener("turbolinks:load", function(){
             }
           })
     });
-
-    
+  
     $("#submit_btn").on("click", function() {
       var selected_pick = $("input:radio[name=addr_pick]:checked").val()
       var selected_drop = $("input:radio[name=addr_drop]:checked").val()
@@ -47,8 +43,8 @@ document.addEventListener("turbolinks:load", function(){
       autoclose: true,
       endDate: '+6m'
     })
-        .on('changeDate', function (selected) {
-            var maxDate = new Date(selected.date.valueOf());
-            $('.startDate').datepicker('setEndDate', maxDate);
+      .on('changeDate', function (selected) {
+        var maxDate = new Date(selected.date.valueOf());
+        $('.startDate').datepicker('setEndDate', maxDate);
     });
 })

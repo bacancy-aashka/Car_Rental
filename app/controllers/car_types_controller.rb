@@ -51,6 +51,6 @@ class CarTypesController < ApplicationController
   end
 
   def car_type_params
-    params.require(:car_type).permit(:name, :fuel)
+    params.require(:car_type).permit(:name)
   end
 end

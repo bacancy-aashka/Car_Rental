@@ -6,7 +6,6 @@
         <thead class = "bg-info">
             <tr>
             <th>Name</th>
-            <th>Fuel</th>
             <th>Edit</th>
             <th>Delete</th>
             </tr>
@@ -16,7 +15,6 @@
             <% @car_types.each do |car_type| %>
                 <tr>
                     <td><%= car_type.name %></td>
-                    <td><%=  car_type.fuel%></td>
                     <td> <%= link_to edit_car_type_path(car_type) do  %>
                         <%= '<i class="fa fa-pencil-square-o text-light" aria-hidden="true"></i>'.html_safe %>
                         <% end %> 

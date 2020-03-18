@@ -4,28 +4,30 @@
     <table  class="table table-striped table-dark">
         <thead class = "bg-info">
             <tr>
-            <th>From</th>
+            <th>From Date:Time</th>
             <th>To</th>
             <th>Status</th>
             <th>Fuel</th>
             <th>Driver Present</th>
             <th>Car Drop Off At<br/> Different Location</th>
-            <th></th>
+            <th>Bookin Details</th>
             </tr>
         </thead>
 
         <tbody>
-            <% @book.each do |book| %>
+            <% @bookings.each do |booking| %>
             <tr>
-                <td><%= book.from %></td>
-                <td><%=  book.to %></td>
-                <td><%= book.status %></td>
-                <td><%= book.fuel %></td>
-                <td><%= book.want_driver.humanize %></td>
-                <td><%= book.diff_city.humanize %></td>
-                <td><%= link_to 'View Booking Details', travel_path(book.id),class: "btn btn-outline-light" %></td>
+                <td><%= booking.from.strftime("%a, %d-%b-%Y:  %I:%M %p") %></td>
+                <td><%=  booking.to.strftime("%a, %d-%b-%Y:  %I:%M %p") %></td>
+                <td><%= booking.status %></td>
+                <td><%= booking.fuel %></td>
+                <td><%= booking.want_driver.humanize %></td>
+                <td><%= booking.diff_city.humanize %></td>
+                <td><%= link_to 'View Booking Details', travel_path(booking.id),class: "btn btn-outline-light" %></td>
             </tr>
             <% end %>
         </tbody>
     </table>
 </div>
+    <%= page_entries_info @bookings %>
+<%= will_paginate @bookings, renderer: BootstrapPagination::Rails %>
