@@ -1,10 +1,11 @@
 <%= form_with(model: @user,url: create_user_path, local: true,method: :post) do |f| %>
-<% if current_user.has_role? :superadmin %>
-  <div class="field">
-    <%= f.label :role %>&nbsp;&nbsp;
-    <%= f.select :role,User::ROLE.map(&:capitalize), {},{class: "btn btn-dark dropdown-toggle"} %>
-  </div><br/>
-<% end %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <% if current_user.has_role? :superadmin %>
+    <div class="field">
+      <%= f.label :role %>&nbsp;&nbsp;
+      <%= f.select :role,User::ROLE.map(&:capitalize), {},{class: "btn btn-dark dropdown-toggle"} %>
+    </div><br/>
+  <% end %>
   <div class="field">
     <%= f.label :First_name %>&nbsp;&nbsp;
     <%= f.text_field :fname, autofocus: true %><br /><br />

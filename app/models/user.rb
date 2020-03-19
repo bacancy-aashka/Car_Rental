@@ -14,7 +14,8 @@ class User < ApplicationRecord
 
   GENDER = %w[Male Female Other].freeze
   ROLE = %w[driver admin].freeze
-
+  private
+  
   def add_default_role
     add_role(:customer) if roles.blank?
   end

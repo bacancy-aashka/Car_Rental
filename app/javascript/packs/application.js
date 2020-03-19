@@ -8,11 +8,14 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+// Yarn Add
 require ("bootstrap")
 require ("jquery")
 require ("jquery-ui")
 require ("bootstrap-datepicker")
 require ("select2")
+require("chartkick")
+require("chart.js")
 
 
 

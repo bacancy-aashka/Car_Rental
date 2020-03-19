@@ -1,5 +1,14 @@
-<h1>Booking#ongoing_request</h1>
+<h1>YOur Trip Has Been Started have Pleasent Journey</h1>
 
 <p>
-  <%= @greeting %>, find me in app/views/booking_mailer/ongoing_request.html.erb
+  <h2>From: <%= @booking.from.strftime("%a, %d-%b-%Y:  %I:%M %p") %></h2>
+  <h2>To: <%= @booking.to.strftime("%a, %d-%b-%Y:  %I:%M %p") %></h2>
+  <h2>Want Driver: <%= @booking.want_driver.humanize %></h2>
+  <h2>Fuel Type: <%= @booking.fuel %></h2>
+  <h2>Car Name: <%= @booking.car.name %></h2>
+  <h2>Car Number: <%= @booking.car.model %></h2>
+
+  <h3>For More Details Please Log Into Your Account
+    <%= link_to 'Car Rental', root_url %>
+  </h3>
 </p>

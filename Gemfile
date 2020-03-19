@@ -93,3 +93,7 @@ gem 'will_paginate-bootstrap'
 gem 'wicked_pdf'
 
 gem 'wkhtmltopdf-binary'
+
+gem "chartkick"
+
+gem 'groupdate'
