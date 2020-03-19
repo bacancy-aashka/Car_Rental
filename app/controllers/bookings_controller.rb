@@ -22,12 +22,13 @@ class BookingsController < ApplicationController
     reject = []
     @cars.each do |car|
       booked = Booking.where('car_id=? AND status=?', car.id, 'Booked')
-      next if booked.empty?
+      unless booked.empty?
 
-      copy_car = car
-      booked.each do |book|
-        if !(from > book.from && to > book.from) || (from < book.to && to < book.to)
-          reject += [copy_car]
+        copy_car = car
+        booked.each do |book|
+          if !(from > book.from && to > book.from) || (from < book.to && to < book.to)
+            reject += [copy_car]
+          end
         end
       end
     end

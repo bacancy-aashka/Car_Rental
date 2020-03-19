@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get 'bookings/show'
   get 'bookings/book/:id' => 'bookings#create_booking', as: :create_booking
   get 'addresses/create/:id' => 'addresses#new', as: :create_address
-  post 'create_user' => 'users#create', as: :create_user
   get 'view_user' => 'users#view', as: :view_user
   get 'view_addr/:id' => 'users#view_addr', as: :view_addr
   get 'driver/approve' => 'drivers#approve', as: :driver_approval
@@ -37,7 +36,9 @@ Rails.application.routes.draw do
   resources 'cars'
   resources 'car_types'
   resources 'car_fuels'
-  resources 'users', except: :create
+  resources 'users', except: :create do
+    post 'create_user', on: :collection, action: 'create', as: :create_user
+  end
   resources 'customers'
   resources 'dashboards', only: [:index] do
     get 'about', on: :collection, action: 'about', as: :about

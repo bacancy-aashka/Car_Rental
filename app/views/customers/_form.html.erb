@@ -1,17 +1,16 @@
 <%= form_with(model: customer, local: true) do |f| %>
-    <div class="field">
-        <%= f.label :licence_no %>
-        <%= f.text_field :licence, required: true %>
-    </div>
-<br><br>
-    <div class="field">
-      <%= f.label :licence_image %>
-      <%= f.file_field :licence_customer_image %><br><br>
-    </div>
+  <div class="field">
+    <%= f.label :licence_no %>
+    <%= f.text_field :licence, required: true %>
+  </div>
+  <br><br>
+  <div class="field">
+    <%= f.label :licence_image %>
+    <%= f.file_field :licence_customer_image %><br><br>
+  </div>
 
-    <div class="actions">
-        <%=f.submit "Add/Update Licence", {class: "btn btn-primary mb-2 btn-lg"}%>
-    </div>
-
-
+  <div class="actions">
+    <%=f.submit "Add/Update Licence", {class: "btn btn-primary mb-2 btn-lg"}%>
+  </div>
+  
 <%end %>

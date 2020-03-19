@@ -3,5 +3,5 @@
 class CarType < ApplicationRecord
   has_many :cars
 
-  # validates :name, uniqueness: { scope: :fuel }
+  validates :name, uniqueness: true
 end

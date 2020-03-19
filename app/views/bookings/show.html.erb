@@ -1,73 +1,67 @@
 <h1>Searched Booking Details</h1>
 <%= form_with  url: "/bookings/show",local: true,method: :get do |form|%>
 
-    <div class="field">
-        <%= form.label :from %>
-        <%= form.label :date %>
-            <%= form.text_field :from_date,required: true, :class => 'startDate', :value =>  @booking[:from_date] %>
-        <%= form.label :time %>
-            <%= form.time_field :from_time,required: true, :value =>  @booking[:from_time] %>
-        <%= form.label :to %>
-        <%= form.label :date %>
-            <%= form.text_field :to_date,required: true, :class => 'endDate', :value =>  @booking[:to_date] %>
-        <%= form.label :time %>
-            <%= form.time_field :to_time,required: true, :value =>  @booking[:to_time] %>
-        <%= form.label :car_type %>
-            <%= form.collection_select :car_type_name, CarType.all,:id,:name, :selected =>  @booking[:car_type_name]%>
-        <%= form.label :fuel_type %>
-            <%= form.collection_select :car_fuel_name, CarFuel.all,:id,:name, :selected =>  @booking[:car_fuel_name] %>
-        
-        <%= form.label :want_driver %>
-        <%if @booking[:want_driver] == "true"%>
-            <%= form.check_box(:want_driver, { checked: true }, "true","false")  %>
-        <%else%>
-            <%= form.check_box(:want_driver, { checked: false }, "true","false")  %>
-        <%end%>
-        
-        <%= form.label :drop_car_to_different_location %>
-        <%if @booking[:diff_loc] == "true"%>
-            <%= form.check_box(:diff_loc, { checked: true }, "true","false")  %>
-        <%else%>
-            <%= form.check_box(:diff_loc, { checked: false }, "true","false")  %>
-        <%end%>
-        
-        <%= form.submit "Search For Cars", {class: "btn btn-primary mb-2"} %>
-    </div>
-    <p><strong>Car Type:</strong> <%= CarType.find(@booking[:car_type_name]).name%>&nbsp;&nbsp;&nbsp;&nbsp;
-    <strong>Fuel Type:</strong> <%= CarFuel.find(@booking[:car_fuel_name]).name%></p>
-<h1>Cars Found</h1>
-    <table  class="table table-striped table-dark">
-        <thead class = "bg-info">
-            <tr>
-            <th>Car Name</th>
-            <th>Seats</th>
-            <th>Luggage</th>
-            <th>Minimum Kms/Day</th>
-            <th>Cost Per Km</th>
-            <th>Model Number</th>
-            <th>Number Of Days</th>
-            <th>Minimum Cost</th>
-            <th></th>
-            </tr>
-        </thead>
+  <div class="field">
+    <%= form.label :from %>
+    <%= form.label :date %>
+    <%= form.text_field :from_date,required: true, :class => 'startDate', :value =>  @booking[:from_date] %>
+    <%= form.label :time %>
+    <%= form.time_field :from_time,required: true, :value =>  @booking[:from_time] %>
+    <%= form.label :to %>
+    <%= form.label :date %>
+    <%= form.text_field :to_date,required: true, :class => 'endDate', :value =>  @booking[:to_date] %>
+    <%= form.label :time %>
+    <%= form.time_field :to_time,required: true, :value =>  @booking[:to_time] %>
+    <%= form.label :car_type %>
+    <%= form.collection_select :car_type_name, get_car,:id,:name, :selected =>  @booking[:car_type_name]%>
+    <%= form.label :fuel_type %>
+    <%= form.collection_select :car_fuel_name, get_car_fuel,:id,:name, :selected =>  @booking[:car_fuel_name] %>    
+    <%= form.label :want_driver %>
+    <%if @booking[:want_driver] == "true"%>
+      <%= form.check_box(:want_driver, { checked: true }, "true","false")  %>
+    <%else%>
+      <%= form.check_box(:want_driver, { checked: false }, "true","false")  %>
+    <%end%>    
+    <%= form.label :drop_car_to_different_location %>
+    <%if @booking[:diff_loc] == "true"%>
+      <%= form.check_box(:diff_loc, { checked: true }, "true","false")  %>
+    <%else%>
+      <%= form.check_box(:diff_loc, { checked: false }, "true","false")  %>
+    <%end%>
+    <%= form.submit "Search For Cars", {class: "btn btn-primary mb-2"} %>
+  </div>
 
-        <tbody>
-            <% @cars.each do |car| %>
-            <tr>
-                <td><%= car.name %></td>
-                <td><%=  car.seats%></td>
-                <td><%= car.luggage %></td>
-                <td><%= car.min_kms %></td>
-                <td><%= car.cost_per_km %></td>
-                <td><%= car.model %></td>
-                <td><%= (@booking[:to_date].to_date - @booking[:from_date].to_date).to_i+1 %></td>
-                <td>&#8377;&nbsp;<%= (((@booking[:to_date].to_date - @booking[:from_date].to_date).to_i)+1)*car.cost_per_km*car.min_kms %></td>
-                <td><%= link_to 'Book Car', create_booking_path(car.id,@booking) %></td>
-            </tr>
-            <% end %>
-        </tbody>
-    </table>
+  <h1>Cars Found</h1>
+  <table  class="table table-striped table-dark">
+    <thead class = "bg-info">
+      <tr>
+        <th>Car Name</th>
+        <th>Seats</th>
+        <th>Luggage</th>
+        <th>Minimum Kms/Day</th>
+        <th>Cost Per Km</th>
+        <th>Model Number</th>
+        <th>Number Of Days</th>
+        <th>Minimum Cost</th>
+        <th></th>
+      </tr>
+    </thead>
 
-
+    <tbody>
+      <% @cars.each do |car| %>
+        <tr>
+          <td><%= car.name %></td>
+          <td><%=  car.seats%></td>
+          <td><%= car.luggage %></td>
+          <td><%= car.min_kms %></td>
+          <td><%= car.cost_per_km %></td>
+          <td><%= car.model %></td>
+          <td><%= (@booking[:to_date].to_date - @booking[:from_date].to_date).to_i+1 %></td>
+          <td>&#8377;&nbsp;<%= (((@booking[:to_date].to_date - @booking[:from_date].to_date).to_i)+1)*car.cost_per_km*car.min_kms %></td>
+          <td><%= link_to 'Book Car', create_booking_path(car.id,@booking) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
 

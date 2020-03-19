@@ -1,47 +1,54 @@
 <%= render 'links_car' %>
-<br/><br/>
+
 <h1>All Cars</h1>
+
+<%= form_tag("/cars", method: "get", remote: false, class:'form-inline md-form mr-auto mb-4 ml-5') do %>
+  <%= text_field_tag :query, params[:query], class: "form-control mr-sm-2" %>
+  <button class="btn btn-dark" type="submit">Search</button>
+<% end %>
+
+<h2>Select Number Of Cars To Be Displayed Per Page
+  <%= select_tag :per_page, options_for_select([30,5,10,20,25],params[:per_page].to_i),
+                 :onchange => "if(this.value){window.location='?per_page='+this.value;}" %>
+</h2>
+
 <table class="table table-striped table-dark">
   <thead class = "bg-info">
     <tr>
-            <th>Name</th>
-            <th>Seats</th>
-            <th>Luggage</th>
-            <th>Minimum<br/>Kilometers</th>
-            <th>Cost Per<br/>Kilometer</th>
-            <th>Availability</th>
-            <th>Car Type: Fuel</th>
-            <th>Model</th>
-            <th>Edit</th>
-            <th>Delete</th>
-            </tr>
-        </thead>
+      <th>Name</th>
+      <th>Seats</th>
+      <th>Luggage</th>
+      <th>Minimum<br/>Kilometers</th>
+      <th>Cost Per<br/>Kilometer</th>
+      <th>Availability</th>
+      <th>Car Type: Fuel</th>
+      <th>Model</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
 
-        <tbody>
-            <% @cars.each do |car| %>
-                <tr>
-                    <td><%= car.name %></td>
-                    <td><%=  car.seats%></td>
-                    <td><%= car.luggage  %></td>
-                    <td><%= car.min_kms %></td>
-                    <td> <%= car.cost_per_km %></td>
-                    <td> <%= car.avail.humanize %> </td>
-                    <td> <%= car.car_type.name%>: <%=car.car_fuel.name %> </td>
-                    <td> <%= car.model %> </td>
-                    <td> <%= link_to edit_car_path(car) do  %>
-                        <%= '<i class="fa fa-pencil-square-o text-light" aria-hidden="true"></i>'.html_safe %>
-                        <% end %>
-                    </td>
-                    <td> <%= link_to car, method: :delete, data: { confirm: 'Are you sure?' } do  %>
-                        <%= '<i class="fa fa-trash text-light" aria-hidden="true"></i>'.html_safe %>
-                        <% end %>
-                    </td>
-
-
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
+  <tbody>
+    <% @cars.each do |car| %>
+      <tr>
+        <td><%= car.name %></td>
+        <td><%=  car.seats%></td>
+        <td><%= car.luggage  %></td>
+        <td><%= car.min_kms %></td>
+        <td> <%= car.cost_per_km %></td>
+        <td> <%= car.avail.humanize %> </td>
+        <td> <%= car.car_type.name%>: <%=car.car_fuel.name %> </td>
+        <td> <%= car.model %> </td>
+        <td> <%= link_to edit_car_path(car) do  %>
+          <%= '<i class="fa fa-pencil-square-o text-light" aria-hidden="true"></i>'.html_safe %>
+        <% end %></td>
+        <td> <%= link_to car, method: :delete, data: { confirm: 'Are you sure?' } do  %>
+          <%= '<i class="fa fa-trash text-light" aria-hidden="true"></i>'.html_safe %>
+        <% end %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
     
-    <%= page_entries_info @cars %>
+<%= page_entries_info @cars %>
 <%= will_paginate @cars, renderer: BootstrapPagination::Rails %>

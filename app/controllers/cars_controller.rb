@@ -4,7 +4,14 @@ class CarsController < ApplicationController
   before_action :set_car, only: %i[show edit update destroy]
 
   def index
-    @cars = Car.includes(:car_type, :car_fuel).paginate(page: params[:page], per_page: 5)
+    @cars = Car.includes(:car_type, :car_fuel).paginate(page: params[:page], per_page: params[:per_page])
+    if params[:query].present?
+      @cars = Car.searching(params[:query]).paginate(per_page: params[:per_page], page: params[:page])
+      # @cars = @cars.paginate(:per_page => 5, :page => params[:page])
+      else
+      @cars = Car.all.paginate(per_page: params[:per_page], page: params[:page])
+      # @cars = @cars.paginate(:per_page => 5, :page => params[:page])
+    end
   end
 
   def new
@@ -17,7 +24,7 @@ class CarsController < ApplicationController
     respond_to do |format|
       if @car.save
         flash[:success] = 'Car Created Successfully'
-        format.html { redirect_to new_cars_path }
+        format.html { redirect_to new_car_path }
       else
         format.html { render :new }
       end

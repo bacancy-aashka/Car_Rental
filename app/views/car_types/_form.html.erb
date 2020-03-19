@@ -1,10 +1,10 @@
 <%= form_with(model: cartype, local: true) do |f| %>
-    <div class="field">
-        <%= f.label :Type_Name %><br />
-        <%= f.text_field :name, autofocus: true %>
-    </div>
-    <br/><br/>
-    <div class="actions">
-        <%= f.submit "Add Type", class: "btn btn-outline-primary" %>
-    </div>
+  <div class="field">
+    <%= f.label :Type_Name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  <br/><br/>
+  <div class="actions">
+    <%= f.submit "Add Type", class: "btn btn-outline-primary" %>
+  </div>
 <% end %>
