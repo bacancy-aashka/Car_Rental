@@ -1,6 +1,12 @@
 <%= render 'links_car' %>
 
 <h1>All Cars</h1>
+
+<%= form_tag("/cars", method: "get", remote: false, class:'form-inline md-form mr-auto mb-4 ml-5') do %>
+  <%= text_field_tag :query, params[:query], class: "form-control mr-sm-2" %>
+  <button class="btn btn-dark" type="submit">Search</button>
+<% end %>
+
 <h2>Select Number Of Cars To Be Displayed Per Page
 <%= select_tag :per_page, options_for_select([30,5,10,20,25],params[:per_page].to_i),
    :onchange => "if(this.value){window.location='?per_page='+this.value;}" %>

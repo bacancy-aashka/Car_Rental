@@ -55,7 +55,7 @@ class Booking < ApplicationRecord
 
   def valid_date_and_time?
     if to < from
-      errors.add(:to, 'The Date & Time For Booking To Is Not Valid')
+      errors.add('The Date & Time For Booking To Is Not Valid ')
     end
   end
 

@@ -1,49 +1,49 @@
 <%= form_with(model: car, local: true) do |f| %>
-    <div class="field" style="display:inline-block">
-        <%= f.label :car_type%>
-        <%= f.collection_select :car_type_id, CarType.all,:id,:name %>
-    </div>
-    <br/><br/>
-    <div class="field" style="display:inline-block">
-        <%= f.label :car_fuel%>
-        <%= f.collection_select :car_fuel_id, CarFuel.all,:id,:name %>
-    </div>
-    <br/><br/>
-    <div class="field" style="display:inline-block">
-        <%= f.label :name%>
-        <%= f.collection_select :name, Car.select(:name).distinct,:name, :name %>
-    </div>
-    <br/><br/>
-    <div class="field" style="display:inline-block">
-        <%= f.label :no_of_seats%>
-        <%= f.collection_select :seats,Car.select(:seats).distinct, :seats, :seats %>
-    </div>
-    <br/><br/>
-    <div class="field" style="display:inline-block">
-        <%= f.label :Luggage_Capacity%>
-        <%= f.collection_select :luggage,Car.select(:luggage).distinct, :luggage, :luggage %>
-        <%= f.label "(In Litres)"%>
-    </div>
-    <br/><br/>
-    <div class="field" style="display:inline-block">
-        <%= f.label :Minimum_Kms%>
-        <%= f.collection_select :min_kms, Car.select(:min_kms).distinct, :min_kms, :min_kms %>
-    </div>
-    <br/><br/>
-    <div class="field" style="display:inline-block">
-        <%= f.label "Cost Per Kilometer"%>
-        <%= f.collection_select :cost_per_km, Car.select(:cost_per_km).distinct, :cost_per_km, :cost_per_km %>
-    </div>
-    <br/><br/>
-    <div class="field" style="display:inline-block">
-        <%= f.label "Model Number: "%>
-        <%= f.text_field :model %>
-    </div>
-    <br/><br/>
-    <div class="actions">
-        <%=f.submit "Add Car", {class: "btn btn-primary mb-2 btn-lg"}%>
-    </div>
-
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field" style="display:inline-block">
+    <%= f.label :car_type%>
+    <%= f.collection_select :car_type_id, CarType.all,:id,:name %>
+  </div>
+  <br/><br/>
+  <div class="field" style="display:inline-block">
+    <%= f.label :car_fuel%>
+    <%= f.collection_select :car_fuel_id, CarFuel.all,:id,:name %>
+  </div>
+  <br/><br/>
+  <div class="field" style="display:inline-block">
+    <%= f.label :name%>
+    <%= f.collection_select :name, Car.select(:name).distinct,:name, :name %>
+  </div>
+  <br/><br/>
+  <div class="field" style="display:inline-block">
+    <%= f.label :no_of_seats%>
+    <%= f.collection_select :seats,Car.select(:seats).distinct, :seats, :seats %>
+  </div>
+  <br/><br/>
+  <div class="field" style="display:inline-block">
+    <%= f.label :Luggage_Capacity%>
+    <%= f.collection_select :luggage,Car.select(:luggage).distinct, :luggage, :luggage %>
+    <%= f.label "(In Litres)"%>
+  </div>
+  <br/><br/>
+  <div class="field" style="display:inline-block">
+    <%= f.label :Minimum_Kms%>
+    <%= f.collection_select :min_kms, Car.select(:min_kms).distinct, :min_kms, :min_kms %>
+  </div>
+  <br/><br/>
+  <div class="field" style="display:inline-block">
+    <%= f.label "Cost Per Kilometer"%>
+    <%= f.collection_select :cost_per_km, Car.select(:cost_per_km).distinct, :cost_per_km, :cost_per_km %>
+  </div>
+  <br/><br/>
+  <div class="field" style="display:inline-block">
+    <%= f.label "Model Number: "%>
+    <%= f.text_field :model %>
+  </div>
+  <br/><br/>
+  <div class="actions">
+    <%=f.submit "Add Car", {class: "btn btn-primary mb-2 btn-lg"}%>
+  </div>
 <% end %>
 
 

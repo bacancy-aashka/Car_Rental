@@ -27,7 +27,7 @@ class TravelsController < ApplicationController
                         'Booked'
                       end
     car = Car.find(params[:id])
-    if @booking.save!
+    if @booking.save
       if @booking.status == 'Booked'
         BookingMailer.booked_confirmation(@booking).deliver
       elsif @booking.status == 'Pending'
@@ -62,7 +62,8 @@ class TravelsController < ApplicationController
         redirect_to root_path
       end
     else
-      render root_path
+      flash[:danger] = "Booking Failed Retry"
+      render 'customers/index'
     end
   end
 

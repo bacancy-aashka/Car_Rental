@@ -13,9 +13,9 @@
         <%= form.label :time %>
             <%= form.time_field :to_time,required: true, :value =>  @booking[:to_time] %>
         <%= form.label :car_type %>
-            <%= form.collection_select :car_type_name, CarType.all,:id,:name, :selected =>  @booking[:car_type_name]%>
+            <%= form.collection_select :car_type_name, get_car,:id,:name, :selected =>  @booking[:car_type_name]%>
         <%= form.label :fuel_type %>
-            <%= form.collection_select :car_fuel_name, CarFuel.all,:id,:name, :selected =>  @booking[:car_fuel_name] %>
+            <%= form.collection_select :car_fuel_name, get_car_fuel,:id,:name, :selected =>  @booking[:car_fuel_name] %>
         
         <%= form.label :want_driver %>
         <%if @booking[:want_driver] == "true"%>
