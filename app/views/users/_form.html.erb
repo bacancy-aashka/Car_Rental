@@ -1,4 +1,4 @@
-<%= form_with(model: @user,url: create_user_path, local: true,method: :post) do |f| %>
+<%= form_with(model: @user,url: create_user_users_path  , local: true,method: :post) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <% if current_user.has_role? :superadmin %>
     <div class="field">

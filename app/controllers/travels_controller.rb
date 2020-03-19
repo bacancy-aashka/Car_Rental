@@ -62,7 +62,7 @@ class TravelsController < ApplicationController
         redirect_to root_path
       end
     else
-      redirect_to root_path
+      render root_path
     end
   end
 

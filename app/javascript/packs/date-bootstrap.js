@@ -34,6 +34,7 @@ document.addEventListener("turbolinks:load", function(){
       startDate: '-d',
       endDate: '+6m'
     }).on('changeDate', function (selected) {
+      $(".endDate").empty();
       var minDate = new Date(selected.date.valueOf());
       $('.endDate').datepicker('setStartDate', minDate);
     });
