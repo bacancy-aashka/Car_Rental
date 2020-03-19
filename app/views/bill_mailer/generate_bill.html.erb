@@ -1,7 +1,7 @@
 <h1>Your Bill Generated Successfully</h1>
 
 <p>
-  <h2>From: <%= @booking.fromstrftime("%a, %d-%b-%Y:  %I:%M %p") %></h2>
+  <h2>From: <%= @booking.from.strftime("%a, %d-%b-%Y:  %I:%M %p") %></h2>
   <h2>To: <%= @booking.to.strftime("%a, %d-%b-%Y:  %I:%M %p") %></h2>
   <h2>Want Driver: <%= @booking.want_driver.humanize %></h2>
   <h2>Fuel Type: <%= @booking.fuel %></h2>
@@ -10,7 +10,7 @@
 
   For More Details Please Log Into Your Account
 
-  <%= link_to 'Car Rental', 'root_url' %>
+  <%= link_to 'Car Rental', root_url %>
 
   <h2>Please Find The Attached Bill</h2>
 </p>

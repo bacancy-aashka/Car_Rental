@@ -25,13 +25,13 @@ class User < ApplicationRecord
             length: {minimum: 8},
             confirmation: true, if: :password_present?
 
-  validates :password_confirmation, 
-            presence: true, if: :password_present?
+  # validates :password_confirmation, 
+            # presence: true, if: :password_present?
 
   GENDER = %w[Male Female Other].freeze
   ROLE = %w[driver admin].freeze
 
-  default_scope { eager_load(users_role: :role) }
+  # default_scope { eager_load(users_role: :role) }
 
   private
 

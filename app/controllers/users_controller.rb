@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = 'Successfully User Created With Role: ' + role
       if @user.has_role? :driver
-        redirect_to driver_path(@user)
+        redirect_to edit_driver_path(@user)
       else
         redirect_to root_path
       end
