@@ -2,6 +2,6 @@
 
 module SuperadminsHelper
   def get_booking
-    Booking.group_by_day(:created_at)
+    Booking.group_by_day(:from)
   end
 end

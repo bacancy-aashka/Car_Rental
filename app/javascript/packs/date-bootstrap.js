@@ -1,4 +1,3 @@
-
 document.addEventListener("turbolinks:load", function(){
     var state = document.getElementById("address_state");
     var city = document.getElementById("address_city");
@@ -34,7 +33,7 @@ document.addEventListener("turbolinks:load", function(){
       startDate: '-d',
       endDate: '+6m'
     }).on('changeDate', function (selected) {
-      $(".endDate").empty();
+      $(".endDate").val("");
       var minDate = new Date(selected.date.valueOf());
       $('.endDate').datepicker('setStartDate', minDate);
     });
@@ -48,4 +47,38 @@ document.addEventListener("turbolinks:load", function(){
         var maxDate = new Date(selected.date.valueOf());
         $('.startDate').datepicker('setEndDate', maxDate);
     });
+
+
+
+    $('.start_graph').datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true,
+      todayBtn: 'linked'
+    })
+    .on('changeDate', function (selected) {
+      $(".end_graph").val("");
+      var minDate = new Date(selected.date.valueOf());
+      $('.end_graph').datepicker('setStartDate', minDate);
+    });
+    
+    $('.end_graph').datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true,
+      todayBtn: 'linked'
+    })
+    // .on('changeDate', function () {
+    //   var endDate = $('.end_graph').val()
+    //   var startDate = $('.start_graph').val()
+    //   $.ajax({
+    //     url: "/superadmins/index",
+    //     type: "GET",
+    //     data: {min_date: startDate, max_date: endDate},
+    //     success: function (data) {
+    //       debugger;
+    //       $("#chart-booking").load(window.location.href + " #chart-booking");
+    //     }
+    //   })
+      
+      
+  // });
 })

@@ -1,6 +1,14 @@
 
-<h1>Users Created</h1>
-<%= line_chart get_user.count %>
+<h1>Bookings Done On Dates</h1>
+
+<%= form_tag("/superadmins/index", method: "get", remote: false, class:'md-form mr-auto mb-4 ml-5') do %>
+  <%= text_field_tag :min_date, params[:min_date], :class => 'start_graph'%>&nbsp;&nbsp;&nbsp;&nbsp; 
+  <%= text_field_tag :max_date,params[:max_date], :class => 'end_graph' %>&nbsp;&nbsp;&nbsp;&nbsp;
+  <button class="btn btn-dark" type="submit">Search</button>
+<% end %>
+<div id="chart-booking" >
+  <%= line_chart get_booking.count, xmin: params[:min_date], xmax: params[:max_date] %>
+</div>
 
 <h1>Cars Based On Categories</h1>
 <%= pie_chart get_car_type.count %>
