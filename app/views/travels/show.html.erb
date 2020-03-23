@@ -3,10 +3,10 @@
 <div class="booking border border-dark"><br/>
     <h2>
         <b>From</b> Date & Time: 
-        <%= @booking.from %><br/><br/>
+        <%= @booking.from.strftime("%a, %d-%b-%Y:  %I:%M %p") %><br/><br/>
         
         <b>To</b> Date & Time: 
-        <%= @booking.to %><br/><br/>
+        <%= @booking.to.strftime("%a, %d-%b-%Y:  %I:%M %p") %><br/><br/>
 
         <b>Booking Status:</b> 
         <%= @booking.status%><br/><br/>

@@ -16,27 +16,17 @@ class BookingsController < ApplicationController
 
   def show
     @booking = set_params
-    @cars = Car.where('car_type_id=? AND avail=? AND car_fuel_id=?', @booking[:car_type_name], true, @booking[:car_fuel_name]).to_a
+    @cars = Car.where('car_type_id=? AND car_fuel_id=?', @booking[:car_type_name], @booking[:car_fuel_name]).to_a
     from = DateTime.strptime(@booking[:from_date] + ' ' + @booking[:from_time], '%d-%m-%Y %H:%M')
     to = DateTime.strptime(@booking[:to_date] + ' ' + @booking[:to_time], '%d-%m-%Y %H:%M')
-    reject = []
-    @cars.each do |car|
-      booked = Booking.where('car_id=? AND status=?', car.id, 'Booked')
-      unless booked.empty?
+    car_reject = Car.joins(:bookings).where("(bookings.\"from\" between ? AND ?) OR (bookings.\"to\" between ? AND ?)", from, to, from, to)
 
-        copy_car = car
-        booked.each do |book|
-          if !(from > book.from && to > book.from) || (from < book.to && to < book.to)
-            reject += [copy_car]
-          end
-        end
-      end
-    end
     @cars = @cars.reject do |car|
-      reject.any? do |rej|
+      car_reject.any? do |rej|
         car.id == rej.id
       end
     end
+    # byebug
   end
 
   def create_booking
